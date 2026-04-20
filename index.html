@@ -1,0 +1,384 @@
+Yes, absolutely! You can use your own envelope images instead of the colored boxes. Just upload the envelope images to your images/ folder, and I'll make them clickable.
+
+Also, I'll rearrange the layout: one main envelope at the top, two smaller envelopes at the bottom.
+
+---
+
+📄 Updated Code (Images for Envelopes + New Layout)
+
+Copy this entire code into your index.html file.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary 💗</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #ffe4ec;
+            font-family: 'Helvetica', Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .card {
+            max-width: 550px;
+            background: white;
+            border-radius: 60px;
+            padding: 25px 20px 35px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(255,105,180,0.2);
+        }
+        /* Stars & bows */
+        .deco {
+            position: absolute;
+            width: 50px;
+            pointer-events: none;
+            z-index: 5;
+        }
+        /* Floating emojis */
+        .emoji-big { font-size: 2.5rem; display: inline-block; animation: float 3s ease-in-out infinite; }
+        .emoji-small { font-size: 1.2rem; display: inline-block; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        /* Envelope layout */
+        .envelope-main {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .envelope-bottom-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        .envelope-img {
+            cursor: pointer;
+            transition: transform 0.2s;
+            max-width: 150px;
+            width: 70%;
+        }
+        .envelope-img:active {
+            transform: scale(0.96);
+        }
+        .envelope-main .envelope-img {
+            max-width: 200px;
+            width: 60%;
+        }
+        /* Hidden content panels */
+        .reveal {
+            background: #fef7e8;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+            border: 1px solid #f0d5b0;
+        }
+        /* Notebook letter style */
+        .notebook {
+            background: #fdf8ed;
+            background-image: linear-gradient(#e0cba0 1px, transparent 1px);
+            background-size: 100% 28px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: inset 0 0 0 2px #fff8, 0 5px 15px rgba(0,0,0,0.1);
+            font-family: 'Snell Roundhand', 'Bradley Hand', 'Apple Chancery', 'Comic Sans MS', cursive;
+            font-size: 1.1rem;
+            line-height: 28px;
+            color: #3b2a1f;
+        }
+        /* Polaroid photos */
+        .polaroid-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .polaroid {
+            background: white;
+            padding: 8px 8px 15px 8px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+            transform: rotate(var(--rot, 0deg));
+            width: 110px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .polaroid img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+        .polaroid-caption {
+            font-size: 0.7rem;
+            margin-top: 6px;
+            color: #886;
+            font-family: 'Bradley Hand', cursive;
+        }
+        .bouquet-img, .selfie-img {
+            max-width: 100%;
+            border-radius: 30px;
+            display: block;
+            margin: 0 auto;
+        }
+        .selfie-img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ffb7c5;
+        }
+        .doodles {
+            font-size: 2rem;
+            letter-spacing: 8px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        button {
+            background: #ff99b9;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 40px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #f5a3b9;
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            color: #e8436e;
+        }
+        .sub {
+            text-align: center;
+            color: #f48fb1;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <!-- Stars & Bows (images) -->
+    <img class="deco" src="images/star1.png" style="top: 10px; left: -15px; width: 55px;">
+    <img class="deco" src="images/star2.png" style="top: 50%; right: -20px; width: 60px;">
+    <img class="deco" src="images/star3.png" style="bottom: 20px; left: -10px; width: 50px;">
+    <img class="deco" src="images/bow1.png" style="top: 80px; right: -15px; width: 45px;">
+    <img class="deco" src="images/bow2.png" style="top: 200px; left: -20px; width: 50px;">
+    <img class="deco" src="images/bow3.png" style="bottom: 100px; right: -10px; width: 48px;">
+    <img class="deco" src="images/bow4.png" style="bottom: -15px; left: 30%; width: 55px;">
+
+    <!-- Floating hearts & kisses -->
+    <div style="text-align: center; margin-bottom: 10px;">
+        <span class="emoji-big">💋</span> <span class="emoji-small">❤️</span> <span class="emoji-big">💗</span> <span class="emoji-small">💋</span> <span class="emoji-big">❤️</span>
+    </div>
+    <h1>💗 Happy Anniversary 💗</h1>
+    <div class="sub">to my favorite IT boy</div>
+
+    <!-- MAIN ENVELOPE (top, larger) -->
+    <div class="envelope-main">
+        <img class="envelope-img" id="envelopeLetterImg" src="images/envelope-letter.png" alt="Envelope">
+    </div>
+
+    <!-- TWO BOTTOM ENVELOPES -->
+    <div class="envelope-bottom-row">
+        <img class="envelope-img" id="envelopeBouquetImg" src="images/envelope-bouquet.png" alt="Envelope">
+        <img class="envelope-img" id="envelopeSelfieImg" src="images/envelope-selfie.png" alt="Envelope">
+    </div>
+
+    <!-- Letter content (hidden initially) -->
+    <div id="letterReveal" class="reveal">
+        <div class="notebook">
+            💌 <strong>My Love,</strong><br><br>
+            <span id="letterText"></span>
+            <div class="polaroid-grid" id="polaroidGrid"></div>
+        </div>
+        <button class="closeBtn" data-target="letterReveal">Close</button>
+    </div>
+
+    <!-- Bouquet content -->
+    <div id="bouquetReveal" class="reveal">
+        <div style="text-align: center;">
+            <img class="bouquet-img" id="bouquetImage" src="" alt="Bouquet">
+        </div>
+        <button class="closeBtn" data-target="bouquetReveal">Close</button>
+    </div>
+
+    <!-- Selfie content -->
+    <div id="selfieReveal" class="reveal">
+        <div style="text-align: center;">
+            <img class="selfie-img" id="selfieImage" src="" alt="Selfie">
+            <div class="doodles" id="doodlesArea">✨🌸🎀⭐💖</div>
+        </div>
+        <button class="closeBtn" data-target="selfieReveal">Close</button>
+    </div>
+
+    <footer>made with ❤️ on GitHub</footer>
+</div>
+
+<script>
+    // ========== CONFIGURATION – EDIT THESE ==========
+    // Your handwritten letter (use \n for line breaks)
+    const loveLetterText = "Every day with you feels like a beautiful dream.\n\nYou make me laugh, you make me feel safe, and you even inspired me to learn GitHub just to surprise you.\n\nI love you more than all the stars in the sky.\n\nForever yours,";
+    
+    // Your 3 polaroid photos (place in images/ folder)
+    const polaroidFiles = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
+    const polaroidCaptions = ["Our first date 💗", "That perfect day 🌸", "My favorite smile 💋"];
+    
+    // Bouquet image
+    const bouquetFile = "bouquet.jpg";
+    // Selfie image
+    const selfieFile = "selfie.jpg";
+    // ===============================================
+
+    // Insert letter text
+    document.getElementById('letterText').innerText = loveLetterText;
+    
+    // Create polaroids
+    const polaroidGrid = document.getElementById('polaroidGrid');
+    for (let i = 0; i < polaroidFiles.length; i++) {
+        const polaroid = document.createElement('div');
+        polaroid.className = 'polaroid';
+        const rot = (Math.random() * 6 - 3).toFixed(1);
+        polaroid.style.setProperty('--rot', rot + 'deg');
+        const img = document.createElement('img');
+        img.src = "images/" + polaroidFiles[i];
+        img.alt = "Memory";
+        const caption = document.createElement('div');
+        caption.className = 'polaroid-caption';
+        caption.innerText = polaroidCaptions[i] || "💕";
+        polaroid.appendChild(img);
+        polaroid.appendChild(caption);
+        polaroidGrid.appendChild(polaroid);
+    }
+    
+    // Set bouquet & selfie image sources
+    document.getElementById('bouquetImage').src = "images/" + bouquetFile;
+    document.getElementById('selfieImage').src = "images/" + selfieFile;
+    
+    // Get elements
+    const letterReveal = document.getElementById('letterReveal');
+    const bouquetReveal = document.getElementById('bouquetReveal');
+    const selfieReveal = document.getElementById('selfieReveal');
+    
+    function hideAll() {
+        letterReveal.style.display = 'none';
+        bouquetReveal.style.display = 'none';
+        selfieReveal.style.display = 'none';
+    }
+    
+    // Envelope click handlers (using images)
+    document.getElementById('envelopeLetterImg').onclick = () => {
+        hideAll();
+        letterReveal.style.display = 'block';
+        letterReveal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+    document.getElementById('envelopeBouquetImg').onclick = () => {
+        hideAll();
+        bouquetReveal.style.display = 'block';
+        bouquetReveal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+    document.getElementById('envelopeSelfieImg').onclick = () => {
+        hideAll();
+        selfieReveal.style.display = 'block';
+        selfieReveal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+    
+    // Close buttons
+    document.querySelectorAll('.closeBtn').forEach(btn => {
+        btn.onclick = () => {
+            const targetId = btn.getAttribute('data-target');
+            document.getElementById(targetId).style.display = 'none';
+        };
+    });
+</script>
+</body>
+</html>
+```
+
+---
+
+🖼️ Envelope Images You Need
+
+You need three envelope images (any style you like – pink, white, with ribbons, etc.). Upload them to your images/ folder with these exact filenames:
+
+Envelope purpose Filename
+Main envelope (letter) envelope-letter.png
+Bottom left (bouquet) envelope-bouquet.png
+Bottom right (selfie) envelope-selfie.png
+
+💡 Tip: You can find free envelope PNGs online (search "cute envelope png transparent") or draw your own. Make sure they have a transparent background for best results.
+
+If you don't have envelope images yet, you can temporarily use the old colored boxes – just let me know and I'll give you a version that falls back to emojis.
+
+---
+
+📂 Full List of Images (All Required)
+
+Type Filename
+Star 1 star1.png
+Star 2 star2.png
+Star 3 star3.png
+Bow 1 bow1.png
+Bow 2 bow2.png
+Bow 3 bow3.png
+Bow 4 bow4.png
+Main envelope (letter) envelope-letter.png
+Bouquet envelope envelope-bouquet.png
+Selfie envelope envelope-selfie.png
+Polaroid photo 1 photo1.jpg
+Polaroid photo 2 photo2.jpg
+Polaroid photo 3 photo3.jpg
+Bouquet image bouquet.jpg
+Selfie image selfie.jpg
+
+---
+
+✅ How It Works
+
+· The main envelope (top, larger) reveals the notebook letter + 3 polaroid photos.
+· The bottom left envelope reveals the bouquet image.
+· The bottom right envelope reveals your selfie + doodles.
+· No text on envelopes before clicking – complete surprise.
+· Close button hides each reveal panel.
+
+---
+
+✏️ Customize the Letter
+
+Find this line near the top of the <script> section:
+
+```javascript
+const loveLetterText = "Every day with you feels like a beautiful dream...";
+```
+
+Replace the text with your own message. Use \n for new lines.
+
+---
+
+🚀 Next Steps
+
+1. Copy the code into your index.html on GitHub.
+2. Upload all images (including the three envelope images) into the images/ folder.
+3. Make sure GitHub Pages is enabled (Settings → Pages → Branch: main).
+4. Open your live link – test clicking each envelope.
+
+Once everything looks perfect, add password protection (I can give you that code separately). Let me know how it goes! 💗
